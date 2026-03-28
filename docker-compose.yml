@@ -1,5 +1,4 @@
 version: "3.9"
-
 services:
   mysql:
     image: mysql:8.0
@@ -22,5 +21,20 @@ services:
       --max-allowed-packet=256M
       --bulk-insert-buffer-size=256M
 
+  cassandra:
+    image: cassandra:4.1
+    container_name: adtech_cassandra
+    restart: unless-stopped
+    ports:
+      - "9042:9042"
+    volumes:
+      - cassandra_data:/var/lib/cassandra
+    environment:
+      - CASSANDRA_CLUSTER_NAME=adtech_cluster
+      - CASSANDRA_DC=dc1
+      - HEAP_NEWSIZE=128M
+      - MAX_HEAP_SIZE=512M
+
 volumes:
   mysql_data:
+  cassandra_data:
