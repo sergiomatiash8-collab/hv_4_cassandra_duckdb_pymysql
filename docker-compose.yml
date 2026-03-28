@@ -34,6 +34,8 @@ services:
       - CASSANDRA_DC=dc1
       - HEAP_NEWSIZE=128M
       - MAX_HEAP_SIZE=512M
+      - CASSANDRA_RPC_ADDRESS=0.0.0.0
+      - CASSANDRA_BROADCAST_RPC_ADDRESS=127.0.0.1
 
 volumes:
   mysql_data:
